@@ -205,6 +205,9 @@ addData()
 
 
 allreels.addEventListener('click',function(dets){
+  
+  //  if(!reels[dets.target.id].isLiked )
+
 if(!reels[dets.target.id].isLiked ) {
   reels[dets.target.id].likesCount++;
 reels[dets.target.id].isLiked = true;
