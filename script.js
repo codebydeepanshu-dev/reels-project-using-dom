@@ -205,19 +205,18 @@ allreels.innerHTML = sum;
 
 addData()
 
+allreels.addEventListener('click', function (dets) {
+  const index = dets.target.dataset.index;
 
-allreels.addEventListener('click',function(dets){
-console.log(dets.target.id)
-  //  if(!reels[dets.target.id].isLiked )
+  if (index === undefined) return; // agar like pe click nahi hua
 
-if(!reels[dets.target.id].isLiked ) {
-  reels[dets.target.id].likesCount++;
-reels[dets.target.id].isLiked = true;
-console.log(reels)}
-else{
- reels[dets.target.id].likesCount--;
-reels[dets.target.id].isLiked = false;
-}
-addData()
-})
- 
+  if (!reels[index].isLiked) {
+    reels[index].likesCount++;
+    reels[index].isLiked = true;
+  } else {
+    reels[index].likesCount--;
+    reels[index].isLiked = false;
+  }
+
+  addData();
+});
