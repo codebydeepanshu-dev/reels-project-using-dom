@@ -157,10 +157,10 @@ function addData() {
 
   reels.forEach(function (elem, idx) {
     sum += `   <div class="reel">
-      <video loop 
+      <video loop autoplay
        ${elem.isMuted?'muted':''}  src="${elem.video}">
        </video>
-       <div class="mute">
+       <div class="mute" id=${idx}>
        <i class="ri-volume-mute-line"></i>
      </div>
 
@@ -218,7 +218,17 @@ function addData() {
 addData();
 
 allreels.addEventListener("click", function (dets) {
- 
+  // 🎥 VIDEO PLAY / PAUSE
+  if (dets.target.tagName === "VIDEO") {
+    if (dets.target.paused) {
+      dets.target.play();
+    } else {
+      dets.target.pause();
+    }
+    return; // 👈 IMPORTANT: niche ka code na chale
+  }
+//for like 
+
   if (dets.target.className == "like") {
     if (!reels[dets.target.id].isLiked) {
       reels[dets.target.id].likesCount++;
@@ -228,6 +238,7 @@ reels[dets.target.id].likesCount--;
       reels[dets.target.id].isLiked = false;
 
     }
+   // for follow 
   }
   if (dets.target.className == "follow") {
     if (! reels[dets.target.id].isFollowed){
