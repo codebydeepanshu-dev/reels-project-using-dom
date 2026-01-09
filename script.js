@@ -157,7 +157,9 @@ reels.forEach(function (elem, idx) {
         </div>
         <h3>${elem.caption} </h3>
  <div class="right">
-    <div id =${idx} class="like">
+      
+    <div class="like" data-index="${idx}">    
+
     
     <h4> ${
       elem.isLiked
@@ -205,7 +207,7 @@ addData()
 
 
 allreels.addEventListener('click',function(dets){
-  
+console.log(dets.target.id)
   //  if(!reels[dets.target.id].isLiked )
 
 if(!reels[dets.target.id].isLiked ) {
