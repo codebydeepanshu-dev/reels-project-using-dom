@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+   background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.743),
+    rgb(0, 0, 0)
+  );
+  
+}
+main{
+  height: 100%;
+  width: 100%;
+ 
+}
+section{
+  
+  height: 90vh;
+  width: 350px;
+  background-color: black;
+  border-radius: 10px;
+  margin: auto;
+}
+.all-reels{
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;      /* ❗ auto nahi */
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.reel{
+  height: 90vh; 
+  width: 100%;
+  position: relative;
+  scroll-snap-align: start;
+}
+.reel video{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.reel .bottom{
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.147),rgba(0, 0, 0, 0.637)
+  );
+  width: 100%;
+  padding: 30px 20px;
+  position: absolute;
+  bottom: 0;
+}
+.bottom .user
+{
+  display :flex;
+align-items: center
+;
+gap: 10px;
+margin-bottom: 20px;
+
+}
+
+.bottom .user .main-img2{
+height: 20px;
+width: 20px;
+border-radius: 50%;
+object-fit: cover;
+
+}
+.bottom>h3{
+color:white;
+font-size: 20px;
+font-weight: 500;
+text-transform: uppercase;
+text-shadow: 5px 5px  15px gold;
+}
+
+.bottom .user h4{
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.user button{
+  margin-left: auto;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.right{
+  
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  position: absolute;
+ padding: 30px;
+  right: 0px;
+  bottom: 150px;
+}
+.right i{
+  background-color:transparent;
+  color: white;
+  font-size:35px;
+}
+.right h6{
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(245, 109, 6, 0.946);
+}
+
+.right>div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.right{
+  transition: transform 0.3s ease;
+}
+
+.right:hover{
+  transform: scale(1.1);
+}
+.right i.love{
+  background-color: red;
+  padding: 6px;
+  border-radius: 50%;
+}
+ 
+
+.right>div h4{
+  pointer-events: none;
+}
+.right>div h6{
+  pointer-events: none;
+}
+   
