@@ -141,9 +141,16 @@ const reels = [
 ];
 
 
+
+
+
+
+
+
 let allreels = document.querySelector(".all-reels");
 function addData(){
 var sum = "";
+
 reels.forEach(function (elem, idx) {
   sum += `   <div class="reel">
       <video loop muted autoplay  src="${elem.video}"></video>
@@ -153,12 +160,12 @@ reels.forEach(function (elem, idx) {
         <div class="user">
           <img class = 'main-img2'src="${elem.userProfile}" alt="">
           <h4>${elem.username}</h4>
-          <button>${elem.isFollowed ? "Unfollow" : "followed"}</button>
+          <button id="${idx}" class="follow">${elem.isFollowed ? "Unfollow" : "followed".toUpperCase()}</button>
         </div>
         <h3>${elem.caption} </h3>
  <div class="right">
       
-    <div class="like" data-index="${idx}">    
+    <div class="like" id="${idx}">    
 
     
     <h4> ${
@@ -206,16 +213,14 @@ allreels.innerHTML = sum;
 addData()
 
 allreels.addEventListener('click', function (dets) {
-  const index = dets.target.dataset.index;
 
-  if (index === undefined) return; // agar like pe click nahi hua
-
-  if (!reels[index].isLiked) {
-    reels[index].likesCount++;
-    reels[index].isLiked = true;
+  if (!reels[dets.target.id].isLiked) {
+    reels[dets.target.id].likesCount++;
+    
+    reels[dets.target.id].isLiked = true;
   } else {
-    reels[index].likesCount--;
-    reels[index].isLiked = false;
+    reels[dets.target.id].likesCount--;
+    reels[dets.target.id].isLiked = false;
   }
 
   addData();
