@@ -140,19 +140,12 @@ const reels = [
   },
 ];
 
-
-
-
-
-
-
-
 let allreels = document.querySelector(".all-reels");
-function addData(){
-var sum = "";
+function addData() {
+  var sum = "";
 
-reels.forEach(function (elem, idx) {
-  sum += `   <div class="reel">
+  reels.forEach(function (elem, idx) {
+    sum += `   <div class="reel">
       <video loop muted autoplay  src="${elem.video}"></video>
 
 
@@ -160,7 +153,9 @@ reels.forEach(function (elem, idx) {
         <div class="user">
           <img class = 'main-img2'src="${elem.userProfile}" alt="">
           <h4>${elem.username}</h4>
-          <button id="${idx}" class="follow">${elem.isFollowed ? "Unfollow" : "followed".toUpperCase()}</button>
+          <button id="${idx}" class="follow">${
+      elem.isFollowed ? "Unfollow" : "followed".toUpperCase()
+    }</button>
         </div>
         <h3>${elem.caption} </h3>
  <div class="right">
@@ -199,29 +194,33 @@ reels.forEach(function (elem, idx) {
 
     </div>
 `;
-});
+  });
 
-allreels.innerHTML = sum;
-
-
-
-
-
-
+  allreels.innerHTML = sum;
 }
 
-addData()
+addData();
 
-allreels.addEventListener('click', function (dets) {
+allreels.addEventListener("click", function (dets) {
+ 
+  if (dets.target.className == "like") {
+    if (!reels[dets.target.id].isLiked) {
+      reels[dets.target.id].likesCount++;
+      reels[dets.target.id].isLiked = true;
+    }else {
+reels[dets.target.id].likesCount--;
+      reels[dets.target.id].isLiked = false;
 
-  if (!reels[dets.target.id].isLiked) {
-    reels[dets.target.id].likesCount++;
-    
-    reels[dets.target.id].isLiked = true;
-  } else {
-    reels[dets.target.id].likesCount--;
-    reels[dets.target.id].isLiked = false;
+    }
   }
+  if (dets.target.className == "follow") {
+    if (! reels[dets.target.id].isFollowed){
 
+   reels[dets.target.id].isFollowed = true;
+    }else{
+      reels[dets.target.id].isFollowed = false;
+    }
+ 
+  }
   addData();
 });
