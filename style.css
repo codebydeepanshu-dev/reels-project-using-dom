@@ -137,7 +137,8 @@ section {
   pointer-events: none;
 }
 .mute {
-  background-color: #b0e70a;
+  background-color: transparent;
+  color:white;
   border-radius: 50%;
   height: 50px;
   width: 50px;

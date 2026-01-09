@@ -1,7 +1,8 @@
 const reels = [
   {
     id: 0,
-    username: "deepanshu_ag",
+  isMuted : true,
+   username: "deepanshu_ag",
     userProfile:
       "https://plus.unsplash.com/premium_photo-1675695223318-3d555909a8c2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
     caption: "Learning frontend day by day 🚀",
@@ -12,8 +13,10 @@ const reels = [
     isCommentOpen: false,
     isFollowed: false,
     video: "./01.mp4", // empty as requested
+
   },
   {
+   isMuted : true,
     id: 1,
     username: "code_with_rahul",
     userProfile:
@@ -28,6 +31,7 @@ const reels = [
     video: "./02.mp4",
   },
   {
+   isMuted : true,
     id: 2,
     username: "frontend_girl",
     userProfile:
@@ -42,6 +46,7 @@ const reels = [
     video: "./03.mp4",
   },
   {
+   isMuted : true,
     id: 3,
     username: "js_master",
     userProfile: "https://example.com/profile4.jpg",
@@ -55,6 +60,7 @@ const reels = [
     video: "./01.mp4",
   },
   {
+   isMuted : true,
     id: 4,
     username: "css_wizard",
     userProfile:
@@ -69,6 +75,7 @@ const reels = [
     video: "./01.mp4",
   },
   {
+   isMuted : true,
     id: 5,
     username: "mern_stack_dev",
     userProfile:
@@ -83,6 +90,7 @@ const reels = [
     video: "./02.mp4",
   },
   {
+   isMuted : true,
     id: 6,
     username: "ui_ux_daily",
     userProfile:
@@ -97,6 +105,7 @@ const reels = [
     video: "./03.mp4",
   },
   {
+   isMuted : true,
     id: 7,
     username: "code_with_neha",
     userProfile:
@@ -111,6 +120,7 @@ const reels = [
     video: "./02.mp4",
   },
   {
+   isMuted : true,
     id: 8,
     username: "frontend_labs",
     userProfile:
@@ -125,6 +135,7 @@ const reels = [
     video: "./01.mp4",
   },
   {
+   isMuted : true,
     id: 9,
     username: "dev_journey",
     userProfile:
@@ -146,7 +157,12 @@ function addData() {
 
   reels.forEach(function (elem, idx) {
     sum += `   <div class="reel">
-      <video loop muted autoplay  src="${elem.video}"></video>
+      <video loop 
+       ${elem.isMuted?'muted':''}  src="${elem.video}">
+       </video>
+       <div class="mute">
+       <i class="ri-volume-mute-line"></i>
+     </div>
 
 
       <div class="bottom">
