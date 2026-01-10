@@ -215,24 +215,24 @@ function addData() {
 }
 
 addData();
-
 allreels.addEventListener("click", function (dets) {
 
-  // 🔊 MUTE BUTTON
+  // ================= 🔊 MUTE BUTTON =================
   if (dets.target.className === "mute") {
 
     var video = dets.target.previousElementSibling;
 
     if (video.muted === true) {
       video.muted = false;
-    } else {
-      video.muted = true;
     }
 
+    if (video.muted === false) {
+      video.muted = true;
+    }
   }
 
-  // 🎯 VIDEO CLICK
-  else if (dets.target.tagName === "VIDEO") {
+  // ================= 🎯 VIDEO CLICK =================
+  if (dets.target.tagName === "VIDEO") {
 
     var videos = document.querySelectorAll("video");
 
@@ -245,28 +245,27 @@ allreels.addEventListener("click", function (dets) {
     dets.target.play();
   }
 
-  // ❤️ LIKE
-  else if (dets.target.className === "like") {
 
-    if (reels[dets.target.id].isLiked === false) {
-      reels[dets.target.id].likesCount = reels[dets.target.id].likesCount + 1;
-      reels[dets.target.id].isLiked = true;
+  if (dets.target.className == 'like') {
+    if (!reels[dets.target.id].isLiked) {
+      reels[dets.target.id].likesCount++
+      reels[dets.target.id].isLiked = true
     } else {
-      reels[dets.target.id].likesCount = reels[dets.target.id].likesCount - 1;
-      reels[dets.target.id].isLiked = false;
+      reels[dets.target.id].likesCount--
+      reels[dets.target.id].isLiked = false
     }
 
+    addData()
   }
-
-  // ➕ FOLLOW
-  else if (dets.target.className === "follow") {
-
-    if (reels[dets.target.id].isFollowed === false) {
-      reels[dets.target.id].isFollowed = true;
+  if (dets.target.className == 'follow') {
+    if (!reels[dets.target.id].isFollowed) {
+      reels[dets.target.id].isFollowed = true
     } else {
-      reels[dets.target.id].isFollowed = false;
+      reels[dets.target.id].isFollowed = false
     }
 
+    addData()
   }
+
 
 });
