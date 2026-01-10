@@ -227,16 +227,16 @@ allreels.addEventListener("click", function (dets) {
   // ================= 🎯 VIDEO CLICK =================
   if (dets.target.tagName === "VIDEO") {
 
-    var videos = document.querySelectorAll("video");
+  var videos = document.querySelectorAll("video");
 
-    for (var i = 0; i < videos.length; i++) {
-      videos[i].pause();
-      videos[i].muted = true;
-    }
+  videos.forEach(function (video) {
+    video.pause();
+    video.muted = true;
+  });
 
-    dets.target.muted = false;
-    dets.target.play();
-  }
+  dets.target.muted = false;
+  dets.target.play();
+}
 
 
   if (dets.target.className == 'like') {
