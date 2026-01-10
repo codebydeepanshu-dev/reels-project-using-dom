@@ -220,6 +220,7 @@ allreels.addEventListener("click", function (dets) {
   // ================= 🔊 MUTE BUTTON =================
 
   if (dets.target.classList.contains("mute")) {
+    //dets.target.previousElementSibling  -impotant to select video tag
   var video = dets.target.previousElementSibling;
   video.muted = !video.muted;
 }
