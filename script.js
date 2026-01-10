@@ -218,19 +218,11 @@ addData();
 allreels.addEventListener("click", function (dets) {
 
   // ================= 🔊 MUTE BUTTON =================
-  if (dets.target.className === "mute") {
 
-    var video = dets.target.previousElementSibling;
-
-    if (video.muted === true) {
-      video.muted = false;
-    }
-
-    if (video.muted === false) {
-      video.muted = true;
-    }
-  }
-
+  if (dets.target.classList.contains("mute")) {
+  var video = dets.target.previousElementSibling;
+  video.muted = !video.muted;
+}
   // ================= 🎯 VIDEO CLICK =================
   if (dets.target.tagName === "VIDEO") {
 
