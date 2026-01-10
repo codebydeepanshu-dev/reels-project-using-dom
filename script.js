@@ -159,9 +159,14 @@ function addData() {
       <video loop playsinline autoplay
        ${elem.isMuted ? "muted" : ""}  src="${elem.video}">
        </video>
-       <div class="mute" id=${idx}>
-       <i class="ri-volume-mute-line"></i>
-     </div>
+    <div class="mute" id="${idx}">
+     ${
+    elem.isMuted
+      ? '<i class="ri-volume-mute-line"></i>'
+      : '<i class="ri-volume-down-line"></i>'
+      }
+</div>
+
 
 
       <div class="bottom">
@@ -225,14 +230,19 @@ allreels.addEventListener("click", function (dets) {
   // ================= 🔊 MUTE BUTTON =================
 
 
-  const muteBtn = dets.target.closest(".mute");
+const muteBtn = dets.target.closest(".mute");
 
-  if (muteBtn) {
-    // .mute ke just pehle video hai
-    var video = muteBtn.previousElementSibling;
-    video.muted = !video.muted;
-    return;
-  }
+if (muteBtn) {
+  const id = muteBtn.id;
+
+  // ✅ DATA update
+  reels[id].isMuted = !reels[id].isMuted;
+
+  // ✅ UI re-render
+  addData();
+
+  return;
+}
 
   // ================= 🎯 VIDEO CLICK =================
   if (dets.target.tagName === "VIDEO") {
