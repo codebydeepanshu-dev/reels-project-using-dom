@@ -1,8 +1,8 @@
 const reels = [
   {
     id: 0,
-  isMuted : true,
-   username: "deepanshu_ag",
+    isMuted: true,
+    username: "deepanshu_ag",
     userProfile:
       "https://plus.unsplash.com/premium_photo-1675695223318-3d555909a8c2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8",
     caption: "Learning frontend day by day 🚀",
@@ -13,10 +13,9 @@ const reels = [
     isCommentOpen: false,
     isFollowed: false,
     video: "./01.mp4", // empty as requested
-
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 1,
     username: "code_with_rahul",
     userProfile:
@@ -31,7 +30,7 @@ const reels = [
     video: "./02.mp4",
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 2,
     username: "frontend_girl",
     userProfile:
@@ -43,10 +42,10 @@ const reels = [
     isLiked: false,
     isCommentOpen: true,
     isFollowed: false,
-    video: "./03.mp4",
+    video: "./01.mp4",
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 3,
     username: "js_master",
     userProfile: "https://example.com/profile4.jpg",
@@ -57,10 +56,10 @@ const reels = [
     isLiked: true,
     isCommentOpen: false,
     isFollowed: true,
-    video: "./01.mp4",
+    video: "./02.mp4",
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 4,
     username: "css_wizard",
     userProfile:
@@ -75,7 +74,7 @@ const reels = [
     video: "./01.mp4",
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 5,
     username: "mern_stack_dev",
     userProfile:
@@ -90,7 +89,7 @@ const reels = [
     video: "./02.mp4",
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 6,
     username: "ui_ux_daily",
     userProfile:
@@ -105,7 +104,7 @@ const reels = [
     video: "./03.mp4",
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 7,
     username: "code_with_neha",
     userProfile:
@@ -120,7 +119,7 @@ const reels = [
     video: "./02.mp4",
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 8,
     username: "frontend_labs",
     userProfile:
@@ -135,7 +134,7 @@ const reels = [
     video: "./01.mp4",
   },
   {
-   isMuted : true,
+    isMuted: true,
     id: 9,
     username: "dev_journey",
     userProfile:
@@ -157,8 +156,8 @@ function addData() {
 
   reels.forEach(function (elem, idx) {
     sum += `   <div class="reel">
-      <video loop autoplay
-       ${elem.isMuted?'muted':''}  src="${elem.video}">
+      <video loop playsinline autoplay
+       ${elem.isMuted ? "muted" : ""}  src="${elem.video}">
        </video>
        <div class="mute" id=${idx}>
        <i class="ri-volume-mute-line"></i>
@@ -219,53 +218,55 @@ addData();
 
 allreels.addEventListener("click", function (dets) {
 
-//for like 
+  // 🔊 MUTE BUTTON
+  if (dets.target.className === "mute") {
 
-  if (dets.target.className == "like") {
-    if (!reels[dets.target.id].isLiked) {
-      reels[dets.target.id].likesCount++;
-      reels[dets.target.id].isLiked = true;
-    }else {
-reels[dets.target.id].likesCount--;
-      reels[dets.target.id].isLiked = false;
+    var video = dets.target.previousElementSibling;
 
+    if (video.muted === true) {
+      video.muted = false;
+    } else {
+      video.muted = true;
     }
-   
-  }
-  // for follow 
-if (dets.target.className == "follow") {
-  if (! reels[dets.target.id].isFollowed){
-    reels[dets.target.id].isFollowed = true;
-  }else{
-    reels[dets.target.id].isFollowed = false;
+
   }
 
-// muted 
-if (dets.target.tagName === "VIDEO") {
-  if (dets.target.muted) {
-    dets.target.muted = false; // 🔊 sound ON
-  } else {
-    dets.target.muted = true;  // 🔇 sound OFF
+  // 🎯 VIDEO CLICK
+  else if (dets.target.tagName === "VIDEO") {
 
-  }}
-  
-  }
-  
-// 🔊 MUTE / UNMUTE
+    var videos = document.querySelectorAll("video");
 
+    for (var i = 0; i < videos.length; i++) {
+      videos[i].pause();
+      videos[i].muted = true;
+    }
 
-if (dets.target.className === "mute") {
-
-  if (reels[dets.target.id].isMuted == true) {
-    reels[dets.target.id].isMuted = false
-    dets.target.previousElementSibling.muted = false
-  } else {
-    reels[dets.target.id].isMuted = true
-    dets.target.previousElementSibling.muted = true
+    dets.target.muted = false;
+    dets.target.play();
   }
 
-}
-}
+  // ❤️ LIKE
+  else if (dets.target.className === "like") {
 
+    if (reels[dets.target.id].isLiked === false) {
+      reels[dets.target.id].likesCount = reels[dets.target.id].likesCount + 1;
+      reels[dets.target.id].isLiked = true;
+    } else {
+      reels[dets.target.id].likesCount = reels[dets.target.id].likesCount - 1;
+      reels[dets.target.id].isLiked = false;
+    }
 
-)
+  }
+
+  // ➕ FOLLOW
+  else if (dets.target.className === "follow") {
+
+    if (reels[dets.target.id].isFollowed === false) {
+      reels[dets.target.id].isFollowed = true;
+    } else {
+      reels[dets.target.id].isFollowed = false;
+    }
+
+  }
+
+});

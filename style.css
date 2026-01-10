@@ -19,7 +19,7 @@ main {
   width: 100%;
 }
 section {
-  height: 90vh;
+   height: 100vh;
   width: 350px;
   background-color: black;
   border-radius: 10px;
@@ -28,16 +28,17 @@ section {
 .all-reels {
   height: 100%;
   width: 100%;
-  overflow-y: scroll; /* ❗ auto nahi */
-  scroll-snap-type: y mandatory;
-  scrollbar-width: none;
+   overflow: auto;
+  scroll-snap-type: y mandatory;  /* for chrome */
+  scrollbar-width: none;/* for friefpx scroling properties */
 }
 
 .reel {
-  height: 90vh;
+   height: 100vh;
   width: 100%;
   position: relative;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 .reel video {
   height: 100%;
