@@ -19,7 +19,7 @@ main {
   width: 100%;
 }
 section {
-   height: 100vh;
+  height: 100vh;
   width: 350px;
   background-color: black;
   border-radius: 10px;
@@ -28,13 +28,13 @@ section {
 .all-reels {
   height: 100%;
   width: 100%;
-   overflow: auto;
-  scroll-snap-type: y mandatory;  /* for chrome */
-  scrollbar-width: none;/* for friefpx scroling properties */
+  overflow: auto;
+  scroll-snap-type: y mandatory; /* for chrome */
+  scrollbar-width: none; /* for friefpx scroling properties */
 }
 
 .reel {
-   height: 100vh;
+  height: 100vh;
   width: 100%;
   position: relative;
   scroll-snap-align: start;
@@ -139,24 +139,23 @@ section {
 }
 .mute {
   background-color: transparent;
-  color:white;
+  color: white;
   border-radius: 50%;
   height: 50px;
   width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position:absolute;
+  position: absolute;
   top: 15px;
   left: 15px;
   z-index: 10;
 }
-.mute i{
+.mute i {
   pointer-events: none;
   cursor: pointer;
   font-size: 50px;
 }
-.mute:active{
+.mute:active {
   scale: 0.95;
-
 }
