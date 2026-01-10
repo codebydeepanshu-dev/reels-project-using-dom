@@ -218,15 +218,7 @@ function addData() {
 addData();
 
 allreels.addEventListener("click", function (dets) {
-  // 🎥 VIDEO PLAY / PAUSE
-  if (dets.target.tagName === "VIDEO") {
-    if (dets.target.paused) {
-      dets.target.play();
-    } else {
-      dets.target.pause();
-    }
-    return; // 👈 IMPORTANT: niche ka code na chale
-  }
+
 //for like 
 
   if (dets.target.className == "like") {
@@ -238,16 +230,42 @@ reels[dets.target.id].likesCount--;
       reels[dets.target.id].isLiked = false;
 
     }
-   // for follow 
+   
   }
-  if (dets.target.className == "follow") {
-    if (! reels[dets.target.id].isFollowed){
+  // for follow 
+if (dets.target.className == "follow") {
+  if (! reels[dets.target.id].isFollowed){
+    reels[dets.target.id].isFollowed = true;
+  }else{
+    reels[dets.target.id].isFollowed = false;
+  }
 
-   reels[dets.target.id].isFollowed = true;
-    }else{
-      reels[dets.target.id].isFollowed = false;
-    }
- 
+// muted 
+if (dets.target.tagName === "VIDEO") {
+  if (dets.target.muted) {
+    dets.target.muted = false; // 🔊 sound ON
+  } else {
+    dets.target.muted = true;  // 🔇 sound OFF
+
+  }}
+  
   }
-  addData();
-});
+  
+// 🔊 MUTE / UNMUTE
+
+
+if (dets.target.className === "mute") {
+
+  if (reels[dets.target.id].isMuted == true) {
+    reels[dets.target.id].isMuted = false
+    dets.target.previousElementSibling.muted = false
+  } else {
+    reels[dets.target.id].isMuted = true
+    dets.target.previousElementSibling.muted = true
+  }
+
+}
+}
+
+
+)
