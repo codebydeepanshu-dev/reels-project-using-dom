@@ -215,50 +215,60 @@ function addData() {
 }
 
 addData();
-allreels.addEventListener("click", function (dets) {
 
+allreels.addEventListener("click", function (e) {
+  console.log(e.target);
+});
+
+
+allreels.addEventListener("click", function (dets) {
   // ================= 🔊 MUTE BUTTON =================
 
-  if (dets.target.classList.contains("mute")) {
-    //dets.target.previousElementSibling  -impotant to select video tag
-  var video = dets.target.previousElementSibling;
-  video.muted = !video.muted;
-}
+
+  const muteBtn = dets.target.closest(".mute");
+
+  if (muteBtn) {
+    // .mute ke just pehle video hai
+    var video = muteBtn.previousElementSibling;
+    video.muted = !video.muted;
+    return;
+  }
+
   // ================= 🎯 VIDEO CLICK =================
   if (dets.target.tagName === "VIDEO") {
+    var videos = document.querySelectorAll("video");
 
-  var videos = document.querySelectorAll("video");
+    videos.forEach(function (video) {
+      video.pause();
+      video.muted = true;
+    });
 
-  videos.forEach(function (video) {
-    video.pause();
-    video.muted = true;
-  });
+    dets.target.muted = false;
+    dets.target.play();
+      return;
+  }
+// like button
+const likeDiv = dets.target.closest(".like");
 
-  dets.target.muted = false;
-  dets.target.play();
+if (likeDiv) {
+  const id = likeDiv.id;
+
+  if (!reels[id].isLiked) {
+    reels[id].likesCount++;
+    reels[id].isLiked = true;
+  } else {
+    reels[id].likesCount--;
+    reels[id].isLiked = false;
+  }
+
+  addData();
 }
+///////////////////////////////////////// follow button 
+const followBtn = dets.target.closest(".follow");
 
-
-  if (dets.target.className == 'like') {
-    if (!reels[dets.target.id].isLiked) {
-      reels[dets.target.id].likesCount++
-      reels[dets.target.id].isLiked = true
-    } else {
-      reels[dets.target.id].likesCount--
-      reels[dets.target.id].isLiked = false
-    }
-
-    addData()
-  }
-  if (dets.target.className == 'follow') {
-    if (!reels[dets.target.id].isFollowed) {
-      reels[dets.target.id].isFollowed = true
-    } else {
-      reels[dets.target.id].isFollowed = false
-    }
-
-    addData()
-  }
-
-
+if (followBtn) {
+  const id = followBtn.id;
+  reels[id].isFollowed = !reels[id].isFollowed;
+  addData();
+}
 });
